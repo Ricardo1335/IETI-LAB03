@@ -1,7 +1,10 @@
 package edu.eci.IETILAB021.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -72,4 +75,17 @@ public class UserController {
           userService.deleteById(id);
           return new ResponseEntity<>(true, HttpStatus.OK);      
      }
+     @GetMapping( "/FindByName/{qweryText}" )
+     public ResponseEntity<List<User>> findUsersWithNameOrLastNameLike(@PathVariable String qweryText ) {
+        return new ResponseEntity<List<User>>(userService.findUsersWithNameOrLastNameLike(qweryText), HttpStatus.OK );
+    }
+     
+    @GetMapping( "/FindByDate/{date}" )
+     public ResponseEntity<List<User>> findUsersCreatedAfter(@PathVariable String date ) throws ParseException {
+        Date dateFormat =new SimpleDateFormat("dd-MM-yyyy").parse(date);  
+        dateFormat.setTime(0);
+        System.out.println(date.toString()); 
+        
+        return new ResponseEntity<List<User>>(userService.findUsersCreatedAfter(dateFormat), HttpStatus.OK );
+    }
 }

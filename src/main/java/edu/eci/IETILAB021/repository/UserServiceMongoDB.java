@@ -1,5 +1,6 @@
 package edu.eci.IETILAB021.repository;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -56,16 +57,16 @@ public class UserServiceMongoDB
         } 
         return null; 
     }
-
     @Override
     public List<User> findUsersWithNameOrLastNameLike(String queryText) {
-        // TODO Auto-generated method stub
-        return null;
+        List<User> users = new ArrayList<>(); 
+        users.addAll(userRepository.findBylastName(queryText)); 
+        users.addAll(userRepository.findByName(queryText)); 
+        return users;
     }
 
     @Override
     public List<User> findUsersCreatedAfter(Date startDate) {
-        // TODO Auto-generated method stub
-        return null;
+        return userRepository.findBycreatedAtAfter(startDate) ; 
     }
    }
