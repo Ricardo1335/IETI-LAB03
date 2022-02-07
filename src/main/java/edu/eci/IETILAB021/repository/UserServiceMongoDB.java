@@ -1,12 +1,13 @@
 package edu.eci.IETILAB021.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.eci.IETILAB021.data.User;
-import edu.eci.IETILAB021.dto.UserDto;
+
 import edu.eci.IETILAB021.service.UserService;
 @Service
 public class UserServiceMongoDB
@@ -32,8 +33,9 @@ public class UserServiceMongoDB
     }
 
     @Override
-    public void deleteById(String id) {
+    public boolean deleteById(String id) {
         userRepository.deleteById(id);
+        return true;
     }
 
     @Override
@@ -45,13 +47,25 @@ public class UserServiceMongoDB
     public User update(User user, String userId) {
         if(userRepository.existsById(userId)){
             User actualUser = userRepository.findById(userId).get(); 
-            actualUser.setCreatedAt(user.getCreatedAt());
+            actualUser.setCreatedAt(user.getCreateAt());
             actualUser.setEmail(user.getEmail());
-            actualUser.setLastName(user.getLastName());
+            actualUser.setLastname(user.getLastName());
             actualUser.setName(user.getName());
             userRepository.save(actualUser); 
             return actualUser; 
         } 
         return null; 
+    }
+
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String queryText) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(Date startDate) {
+        // TODO Auto-generated method stub
+        return null;
     }
    }

@@ -61,8 +61,8 @@ public class User
         this.lastName = lastname;
     }
 
-    public void setdate(LocalDate now) {
-        this.createdAt = now;
+    public void setdate(LocalDate localDate) {
+        this.createdAt = localDate;
     }
     public void setCreatedAt(LocalDate createdAt2) {
     }

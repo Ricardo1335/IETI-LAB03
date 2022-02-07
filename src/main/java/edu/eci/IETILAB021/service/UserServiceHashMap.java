@@ -41,5 +41,17 @@ public class UserServiceHashMap implements UserService {
         map.put(userId, user);
         return map.get(userId);
     }
+
+    @Override
+    public List<User> findUsersWithNameOrLastNameLike(String queryText) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<User> findUsersCreatedAfter(Date startDate) {
+        // TODO Auto-generated method stub
+        return null;
+    }
     
 }
